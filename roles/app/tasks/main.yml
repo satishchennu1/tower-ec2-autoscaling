@@ -31,8 +31,3 @@
     name: forever
     global: yes
   become: true
-
-- name: Start the webapp
-  shell: forever start index.js
-  args:
-    chdir: /home/ec2-user/app/
