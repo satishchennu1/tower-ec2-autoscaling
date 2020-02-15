@@ -49,6 +49,7 @@
   - name: Stop the instance
     ec2:
       state: 'stopped'
+      wait: yes
       region: ap-south-1
       instance_ids: '{{ ec2.instance_ids }}'
 
