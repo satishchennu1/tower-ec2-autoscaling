@@ -30,6 +30,10 @@
       timeout: 300
     loop: "{{ ec2.instances }}"
 
+  - name: Wait for the instance to get ready
+    pause:
+      seconds: 15
+
   - name: Add new instance to host group
     add_host:
       hostname: "{{ item.public_ip }}"

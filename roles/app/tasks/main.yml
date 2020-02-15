@@ -4,6 +4,7 @@
     state: latest
     update_cache: yes
   become: true
+  become_method: sudo
 
 - name: Create a app directory if it does not exist
   file:
