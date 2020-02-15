@@ -41,3 +41,19 @@
   
   roles:
   - app
+
+- name: Stop the instance
+  hosts: localhost
+  tasks:
+    - name: Stop the instance
+      ec2:
+        state: 'stopped'
+        instance_ids: '{{ ec2.instance_ids }}'
+
+- name: Create AMI
+  ec2_ami:
+    instance_id: '{{ ec2.instance_ids }}'
+    wait: yes
+    name: hello-world-v1
+    tags:
+      Name: hello-world
