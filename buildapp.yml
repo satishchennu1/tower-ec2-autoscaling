@@ -55,7 +55,7 @@
 
   - name: Create AMI
     ec2_ami:
-      instance_id: '{{ ec2.instance_ids }}'
+      instance_id: '{{ ec2.instance_ids[0] }}'
       region: ap-south-1
       wait: yes
       name: hello-world-v1
