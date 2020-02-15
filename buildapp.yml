@@ -30,10 +30,6 @@
       timeout: 300
     loop: "{{ ec2.instances }}"
 
-  - name: Wait for the instance to get ready
-    pause:
-      seconds: 15
-
   - name: Add new instance to host group
     add_host:
       hostname: "{{ item.public_ip }}"
@@ -53,11 +49,13 @@
   - name: Stop the instance
     ec2:
       state: 'stopped'
+      region: ap-south-1
       instance_ids: '{{ ec2.instance_ids }}'
 
   - name: Create AMI
     ec2_ami:
       instance_id: '{{ ec2.instance_ids }}'
+      region: ap-south-1
       wait: yes
       name: hello-world-v1
       tags:
@@ -66,4 +64,5 @@
   - name: Terminate the instance
     ec2:
       state: 'absent'
+      region: ap-south-1
       instance_ids: '{{ ec2.instance_ids }}'
