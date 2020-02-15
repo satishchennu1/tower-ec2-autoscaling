@@ -1,0 +1,43 @@
+- name: Create EC2 instances
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  tasks:
+  - name: Create ec2 instances
+    ec2:
+      key_name: ishwar
+      instance_type: t2.micro
+      image: "ami-0a74bfeb190bd404f"
+      wait: yes
+      region: ap-south-1
+      group: webapp
+      exact_count: "1"
+      vpc_subnet_id: "subnet-ef774387"
+      assign_public_ip: yes
+      count_tag:
+        app: web
+      instance_tags:
+        Name: webapp-build
+        app: web
+    register: ec2
+
+  - name: Wait for SSH to come up
+    wait_for: 
+      host: "{{ item.public_dns_name }}" 
+      port: 22 
+      delay: 10  
+      timeout: 300
+    loop: "{{ ec2.instances }}"
+
+  - name: Add new instance to host group
+    add_host:
+      hostname: "{{ item.public_ip }}"
+      groupname: aws_ec2
+    loop: "{{ ec2.instances }}"
+
+- name: Deploy the web app
+  hosts: aws_ec2
+  
+  roles:
+  - app
