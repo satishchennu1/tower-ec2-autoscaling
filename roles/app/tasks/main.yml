@@ -39,3 +39,4 @@
     special_time: reboot
     job: cd /home/ec2-user/app/ && forever start index.js
     user: ec2_user
+  become: true
