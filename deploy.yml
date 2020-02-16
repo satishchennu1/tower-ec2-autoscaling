@@ -9,7 +9,7 @@
   tasks:
   - name: create launch config
     ec2_lc:
-      name: {{ lcname }}
+      name: "{{ lcname }}"
       image_id: "{{ ec2ami }}"
       key_name: ishwar
       region: ap-south-1
