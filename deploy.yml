@@ -59,7 +59,7 @@
   - name: Change autoscaling group 
     ec2_asg:
       name: webapp-asg
-      target_group_arns: "{{ elbtg.target_group_arns }}"
+      target_group_arns: "{{ elbtg.target_group_arn }}"
       launch_config_name: "{{ lcname }}"
       replace_all_instances: yes
       min_size: 3
