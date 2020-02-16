@@ -3,10 +3,13 @@
   connection: local
   gather_facts: false
 
+  vars:
+    lcname: webapp-lc
+
   tasks:
   - name: create launch config
     ec2_lc:
-      name: webapp-lc
+      name: {{ lcname }}
       image_id: "{{ ec2ami }}"
       key_name: ishwar
       region: ap-south-1
@@ -17,7 +20,7 @@
   - name: Change autoscaling group 
     ec2_asg:
       name: webapp-asg
-      launch_config_name: webapp-asg
+      launch_config_name: "{{ lcname }}"
       replace_all_instances: yes
       min_size: 3
       max_size: 3
