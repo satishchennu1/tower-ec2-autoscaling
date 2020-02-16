@@ -45,6 +45,9 @@
 - name: Stop the instance
   hosts: localhost
   connection: local
+  
+  vars:
+    aminame: webapp-image-1
 
   tasks:
   - name: Stop the instance
@@ -59,7 +62,7 @@
       instance_id: '{{ ec2.instance_ids[0] }}'
       region: ap-south-1
       wait: yes
-      name: "hello-world-image"
+      name: "{{ aminame }}"
       tags:
         Name: hello-world
     register: ec2ami
