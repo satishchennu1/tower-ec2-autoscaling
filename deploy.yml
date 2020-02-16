@@ -14,6 +14,15 @@
         vpc-id: vpc-960b04fe
     register: vpc_facts
 
+  - elb_target_group:
+      name: webapp-tg
+      protocol: http
+      port: 8080
+      vpc_id: vpc-960b04fe
+      health_check_path: /
+      successful_response_codes: "200,250-260"
+      state: present
+
   - name: Create the ALB
     elb_application_lb:
       region: ap-south-1
@@ -29,6 +38,9 @@
           SslPolicy: ELBSecurityPolicy-2015-05
           Certificates:
             - CertificateArn: "arn:aws:acm:ap-south-1:794652573366:certificate/5264db9f-3879-4a3f-bf49-e605230b1016"
+          DefaultActions:
+          - Type: forward # Required.
+            TargetGroupName: webapp-tg
       state: present
     register: alb_facts
 
