@@ -46,9 +46,6 @@
   hosts: localhost
   connection: local
 
-  vars:
-    version: v1
-
   tasks:
   - name: Stop the instance
     ec2:
@@ -62,7 +59,7 @@
       instance_id: '{{ ec2.instance_ids[0] }}'
       region: ap-south-1
       wait: yes
-      name: "hello-world-{{ version }}"
+      name: "hello-world-image"
       tags:
         Name: hello-world
     register: ec2ami
