@@ -10,7 +10,7 @@
       image_id: "{{ ec2ami }}"
       key_name: ishwar
       region: ap-south-1
-      security_groups: webapp
+      security_groups: "sg-06f7cf2eebd2cf957"
       instance_type: t2.micro
       assign_public_ip: yes
 
