@@ -15,7 +15,7 @@
       assign_public_ip: yes
 
   - name: Change autoscaling group 
-   ec2_asg:
+    ec2_asg:
       name: webapp-asg
       launch_config_name: webapp-asg
       replace_all_instances: yes
