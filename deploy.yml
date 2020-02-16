@@ -16,6 +16,7 @@
 
   - elb_target_group:
       name: webapp-tg
+      region: ap-south-1
       protocol: http
       port: 8080
       vpc_id: vpc-960b04fe
