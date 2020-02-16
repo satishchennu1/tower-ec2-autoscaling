@@ -18,6 +18,7 @@
       name: webapp-tg
       protocol: http
       port: 8080
+      region: ap-south-1
       vpc_id: vpc-960b04fe
       health_check_path: /
       successful_response_codes: "200,250-260"
