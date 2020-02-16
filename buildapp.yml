@@ -61,6 +61,12 @@
       name: hello-world-v1
       tags:
         Name: hello-world
+    register: ec2ami
+
+  - set_stats:
+      data:
+        ec2ami: "{{ ec2ami.image_id }}"
+      per_host: no
 
   - name: Terminate the instance
     ec2:

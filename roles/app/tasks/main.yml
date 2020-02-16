@@ -31,3 +31,11 @@
     name: forever
     global: yes
   become: true
+
+- name: Start the app on system boot
+  cron:
+    name: Start webapp
+    state: present
+    special_time: reboot
+    job: cd /home/ec2-user/app/ && forever start index.js
+    user: ec2_user
