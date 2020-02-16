@@ -47,7 +47,7 @@
   connection: local
   
   vars:
-    aminame: webapp-image-1
+    aminame: webapp-image-2
 
   tasks:
   - name: Stop the instance
