@@ -1,0 +1,27 @@
+- name: Deploy webapp using autoscaling group
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  tasks:
+  - name: create launch config
+    ec2_lc:
+      name: webapp-lc
+      image_id: "{{ ec2ami }}"
+      key_name: ishwar
+      region: ap-south-1
+      security_groups: webapp
+      instance_type: t2.micro
+      assign_public_ip: yes
+
+  - name: Change autoscaling group 
+   ec2_asg:
+      name: webapp-asg
+      launch_config_name: webapp-asg
+      replace_all_instances: yes
+      min_size: 3
+      max_size: 3
+      desired_capacity: 3
+      region: ap-south-1
+      wait_for_instances: yes
+      vpc_zone_identifier: "subnet-ef774387" 
