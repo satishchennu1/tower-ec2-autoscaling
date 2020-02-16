@@ -3,9 +3,6 @@
   connection: local
   gather_facts: false
 
-  vars:
-    version: v1
-
   tasks:
   - name: Create ec2 instances
     ec2:
@@ -48,6 +45,10 @@
 - name: Stop the instance
   hosts: localhost
   connection: local
+
+  vars:
+    version: v1
+
   tasks:
   - name: Stop the instance
     ec2:
