@@ -1,4 +1,4 @@
-- name: Create EC2 instances
+- name: Bake webapp AMI
   hosts: localhost
   connection: local
   gather_facts: false
