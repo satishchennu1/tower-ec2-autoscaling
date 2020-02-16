@@ -3,9 +3,6 @@
   connection: local
   gather_facts: false
 
-  vars:
-    lcname: webapp-lc
-
   tasks:
   - name: Get vpc facts
     ec2_vpc_subnet_facts:
@@ -48,7 +45,7 @@
 
   - name: create launch config
     ec2_lc:
-      name: "{{ lcname }}"
+      name: "{{ aminame }}"
       image_id: "{{ ec2ami }}"
       key_name: ishwar
       region: ap-south-1
@@ -60,7 +57,7 @@
     ec2_asg:
       name: webapp-asg
       target_group_arns: "{{ elbtg.target_group_arn }}"
-      launch_config_name: "{{ lcname }}"
+      launch_config_name: "{{ aminame }}"
       replace_all_instances: yes
       min_size: 3
       max_size: 3

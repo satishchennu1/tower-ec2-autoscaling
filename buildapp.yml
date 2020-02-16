@@ -45,9 +45,6 @@
 - name: Stop the instance
   hosts: localhost
   connection: local
-  
-  vars:
-    aminame: webapp-image-1
 
   tasks:
   - name: Stop the instance
